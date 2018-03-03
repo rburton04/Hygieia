@@ -13,10 +13,10 @@ services:
   ui:
     # environment:
 
-  appdynamics-collector:
+  #appdynamics-collector:
     # environment:
 
-  artifactory-artifact-collector:
+  #artifactory-artifact-collector:
     # environment:
 
   bitbucket-collector:
@@ -26,28 +26,70 @@ services:
     # environment:
 
   github-collector:
-    # environment:
+      environment:
+       #Database Name
+        - dbname=dashboarddb
+       #Database HostName - default is localhost
+        - dbhost=172.18.0.2
+       #Database Port - default is 27017
+        - dbport=27017
+       #Database Username - default is blank
+        - dbusername=dashboarduser
+       #Database Password - default is blank
+        - dbpassword=dbpassword
+       
+        - MONGO_PORT=27017
 
   jenkins-build-collector:
-    # environment:
+       environment:
+       #Database Name
+        - dbname=dashboarddb
+       #Database HostName - default is localhost
+        - dbhost=172.18.0.2
+       #Database Port - default is 27017
+        - dbport=27017
+       #Database Username - default is blank
+        - dbusername=dashboarduser
+       #Database Password - default is blank
+        - dbpassword=dbpassword
+       #Collector schedule (required)
+        - jenkins.cron=0 0/5 * * * *
+       #Jenkins server (required) - Can provide multiple
+        - jenkins.servers[0]=http://192.168.1.45:18080/api/json
+       #Another option: If using same username/password Jenkins auth - set username/apiKey to use HTTP Basic Auth (blank=no auth)
+        - jenkins.username=swat 
+        - jenkins.apiKey=59776cd24390a075adb6505fdfa912d5 
+       #Determines if build console log is collected - defaults to false
+        - jenkins.saveLog=true
+        - MONGO_PORT=27017
 
   jenkins-cucumber-test-collector:
     # environment:
 
   jira-collector:
-    # environment:
+      environment:
+       #Database Name
+        - dbname=dashboarddb
+       #Database HostName - default is localhost
+        - dbhost=172.18.0.2
+       #Database Port - default is 27017
+        - dbport=27017
+       #Database Username - default is blank
+        - dbusername=dashboarduser
+       #Database Password - default is blank
+        - dbpassword=dbpassword
+       
+        - MONGO_PORT=27017
 
   sonar-codequality-collector:
     # environment:
 
-  subversion-collector:
+  #subversion-collector:
     # environment:
 
   udeploy-collector:
     # environment:
 
-  versionone-collector:
-    # environment:
-
   xldeploy-collector:
     # environment:
+
